@@ -13,7 +13,6 @@ public class Controller {
 
 	private ArrayList<Campaign> campaignList;
 	public static ArrayList<Account> accountList;
-	public static Account currentAccount;
 	public static LoginGUI login;
 
 	
@@ -24,7 +23,7 @@ public class Controller {
 		int menuChoice = 0;
 		
 		accountList = new ArrayList<Account>();
-		//accountList.add(new Account("Zero", "123456789"));
+		accountList.add(new Account("Zero", "123"));
 		
 		login =  new LoginGUI();
 		
@@ -49,17 +48,6 @@ public class Controller {
 		}
 	}
 	
-	public static void singletonAccount(Account account) {
-		
-		if(currentAccount== null) {
-			currentAccount = account;
-		} else if (account == null) {
-			currentAccount = null;
-		} else {
-			System.out.println("User already logged in");
-		}
-		
-	}
 	
 	
 	
