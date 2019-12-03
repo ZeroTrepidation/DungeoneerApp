@@ -45,7 +45,8 @@ public class MapGUI {
 
 		frame.setTitle("D&D Dungeon/Room Description Generator");
 		frame.setBounds(100, 100, 1200, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 
 		JButton btnGenerateDescription = new JButton("Generate Description");
 		btnGenerateDescription.addMouseListener(new MouseAdapter() {
@@ -113,5 +114,6 @@ public class MapGUI {
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		frame.setVisible(true);
 	}
 }

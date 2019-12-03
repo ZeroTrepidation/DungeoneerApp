@@ -77,6 +77,7 @@ public class Conditions {
 		frameConditions.setTitle("Apply Conditions");
 		frameConditions.setBounds(100, 100, 450, 300);
 		frameConditions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frameConditions.setLocationRelativeTo(null);
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addMouseListener(new MouseAdapter() {

@@ -114,10 +114,9 @@ public class LoginGUI {
 				for (int i = 0; i < Controller.accountList.size(); i++) {
 					if (username.toLowerCase().equals(Controller.accountList.get(i).getUsername().toLowerCase())) {
 						if (password.equals(Controller.accountList.get(i).getPassword())) {
-							Controller.singletonAccount(Controller.accountList.get(i));
 							visibility(false);
 							accountFound = true;
-							CampaignWindow campaignWindow = new CampaignWindow();
+							CampaignWindow campaignWindow = new CampaignWindow(Controller.accountList.get(i));
 							campaignWindow.setVisible(true);
 							break OUTER_LOOP;
 						}
