@@ -178,6 +178,7 @@ public class playerCharacter
     
     void generateShareCode()
     {
+    	shareCode="";
         str = statIntCheck(str);
         dex = statIntCheck(dex);
         con = statIntCheck(con);

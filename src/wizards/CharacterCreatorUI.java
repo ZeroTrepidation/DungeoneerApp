@@ -1,10 +1,17 @@
 package wizards;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
 public class CharacterCreatorUI extends javax.swing.JFrame {
 
-    playerCharacter myCharacter = new playerCharacter();
+    playerCharacter myCharacter;
 
-    public CharacterCreatorUI() {
+    public CharacterCreatorUI(playerCharacter character) {
+    	this.myCharacter = character;
         initComponents();
     }
 
@@ -65,6 +72,8 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        
+   
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -499,27 +508,28 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+        				.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)))
         );
+        getContentPane().setLayout(layout);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
@@ -569,31 +579,7 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String temp = jTextField11.getText();
-        if(myCharacter.isValidShareCode(temp))
-        {
-            jTextField7.setText(temp.substring(33, temp.length()));
-            jComboBox1.setSelectedIndex(Character.getNumericValue(temp.charAt(0)));
-            jComboBox2.setSelectedIndex(Character.getNumericValue(temp.charAt(1)));
-            jComboBox3.setSelectedIndex(Character.getNumericValue(temp.charAt(2)));
-            jComboBox4.setSelectedIndex(Character.getNumericValue(temp.charAt(3)));
-            jComboBox5.setSelectedIndex(Character.getNumericValue(temp.charAt(4)));
-            jComboBox6.setSelectedIndex(Character.getNumericValue(temp.charAt(5)));
-            jTextField8.setText(temp.substring(6, 9));
-            jTextField9.setText(temp.substring(9, 12));
-            jTextField10.setText(temp.substring(12, 15));
-            jComboBox7.setSelectedIndex(Character.getNumericValue(temp.charAt(15)));
-            jComboBox8.setSelectedIndex(Character.getNumericValue(temp.charAt(16)));
-            jComboBox9.setSelectedIndex(Character.getNumericValue(temp.charAt(17)));
-            jComboBox10.setSelectedIndex(Character.getNumericValue(temp.charAt(18)));
-            jComboBox11.setSelectedIndex(Character.getNumericValue(temp.charAt(19)));
-            jComboBox12.setSelectedIndex(Character.getNumericValue(temp.charAt(20)));
-            jTextField1.setText(temp.substring(21, 23));
-            jTextField2.setText(temp.substring(23, 25));
-            jTextField3.setText(temp.substring(25, 27));
-            jTextField4.setText(temp.substring(27, 29));
-            jTextField5.setText(temp.substring(29, 31));
-            jTextField6.setText(temp.substring(31, 33));
-        }
+        generateCharacter(temp);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -613,7 +599,8 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        fillCharacter();
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -655,7 +642,7 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CharacterCreatorUI().setVisible(true);
+                new CharacterCreatorUI(new playerCharacter()).setVisible(true);
             }
         });
     }
@@ -692,7 +679,38 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
         myCharacter.statIntCheck(myCharacter.getCha());
         myCharacter.generateShareCode();
         jTextField11.setText(myCharacter.getShareCode());
-        myCharacter.setShareCode("");
+        
+        
+    }
+    
+    public void generateCharacter(String shareCode) {
+    	if(myCharacter.isValidShareCode(shareCode))
+        {
+            jTextField7.setText(shareCode.substring(33, shareCode.length()));
+            jComboBox1.setSelectedIndex(Character.getNumericValue(shareCode.charAt(0)));
+            jComboBox2.setSelectedIndex(Character.getNumericValue(shareCode.charAt(1)));
+            jComboBox3.setSelectedIndex(Character.getNumericValue(shareCode.charAt(2)));
+            jComboBox4.setSelectedIndex(Character.getNumericValue(shareCode.charAt(3)));
+            jComboBox5.setSelectedIndex(Character.getNumericValue(shareCode.charAt(4)));
+            jComboBox6.setSelectedIndex(Character.getNumericValue(shareCode.charAt(5)));
+            jTextField8.setText(shareCode.substring(6, 9));
+            jTextField9.setText(shareCode.substring(9, 12));
+            jTextField10.setText(shareCode.substring(12, 15));
+            jComboBox7.setSelectedIndex(Character.getNumericValue(shareCode.charAt(15)));
+            jComboBox8.setSelectedIndex(Character.getNumericValue(shareCode.charAt(16)));
+            jComboBox9.setSelectedIndex(Character.getNumericValue(shareCode.charAt(17)));
+            jComboBox10.setSelectedIndex(Character.getNumericValue(shareCode.charAt(18)));
+            jComboBox11.setSelectedIndex(Character.getNumericValue(shareCode.charAt(19)));
+            jComboBox12.setSelectedIndex(Character.getNumericValue(shareCode.charAt(20)));
+            jTextField1.setText(shareCode.substring(21, 23));
+            jTextField2.setText(shareCode.substring(23, 25));
+            jTextField3.setText(shareCode.substring(25, 27));
+            jTextField4.setText(shareCode.substring(27, 29));
+            jTextField5.setText(shareCode.substring(29, 31));
+            jTextField6.setText(shareCode.substring(31, 33));
+            
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

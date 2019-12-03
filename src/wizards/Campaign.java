@@ -11,13 +11,12 @@ public class Campaign {
 	private String campName;
 	private String startDate;
 	private playerCharacter mainCharacter;
-	private Timeline myTimeline;
+
 	private Vector<Event> events;
 	
 	public Campaign(String campName, String startDate) {
 		this.campName = campName;
 		this.startDate = startDate;
-		myTimeline = new Timeline();
 		events = new Vector<Event>();
 	}
 
@@ -43,14 +42,6 @@ public class Campaign {
 
 	public void setMainCharacter(playerCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
-	}
-
-	public Timeline getMyTimeline() {
-		return myTimeline;
-	}
-
-	public void setMyTimeline(Timeline myTimeline) {
-		this.myTimeline = myTimeline;
 	}
 
 	public Vector<Event> getEvents() {

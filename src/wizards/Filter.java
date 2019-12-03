@@ -72,6 +72,7 @@ public class Filter {
 		filterFrame.setTitle("Apply Filters");
 		filterFrame.setBounds(100, 100, 450, 300);
 		filterFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		filterFrame.setLocationRelativeTo(null);
 
 		arctic.setHorizontalAlignment(SwingConstants.CENTER);
 		temperate.setHorizontalAlignment(SwingConstants.CENTER);

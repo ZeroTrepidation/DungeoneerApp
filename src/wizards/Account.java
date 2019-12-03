@@ -9,6 +9,7 @@ import java.awt.Frame;
 
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class Account {
@@ -64,7 +65,7 @@ public class Account {
 		this.password = password;
 	}
 
-	public void addCampaign(Campaign newCampaign) {
+	public void addCampaign(Campaign newCampaign, DefaultListModel dlm) {
 		boolean isUnique = true;
 		for (int i = 0; i < campaignList.size(); i++) {
 			if (newCampaign.getCampName().toLowerCase().equals(campaignList.get(i).getCampName().toLowerCase())) {
@@ -72,25 +73,27 @@ public class Account {
 			}
 		}
 		if (isUnique) {
+			dlm.addElement(newCampaign);
+			playerCharacter mainCharacter = new playerCharacter();
+			newCampaign.setMainCharacter(mainCharacter);
+			new CharacterCreatorUI(mainCharacter).setVisible(true);
 			campaignList.add(newCampaign);
+			
 		} else {
 			JOptionPane.showMessageDialog(new Frame(), "Please choose a Unique Name for your Campaign");
 		}
 
 	}
 
-	public void deleteCampaign(Campaign selectedCampaign) {
+	public void deleteCampaign(int index) {
 
-		if (JOptionPane.showConfirmDialog(new Frame(), "Are you sure you want to remove this Campaign?", "Delete Campaign?",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(new Frame(), "Are you sure you want to remove this Campaign?",
+				"Delete Campaign?", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 
-			for (int i = 0; i < campaignList.size(); i++) {
-				if (selectedCampaign == campaignList.get(i)) {
-					campaignList.remove(i);
-					return;
-				}
+			campaignList.remove(index);
+			return;
 
-			}
 		}
 	}
 
