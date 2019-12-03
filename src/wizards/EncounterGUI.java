@@ -3,7 +3,6 @@ package wizards;
 
 
 
-
 //package swing_1;
  
 import java.awt.EventQueue;
@@ -31,13 +30,18 @@ public class EncounterGUI{
      static JLabel lblAdjustedXpValue;
      static JLabel lblDiffValue;
      static JLabel lblCurrentEncounter;
+     private JComboBox comboBoxDifficulty;
+     private JLabel lblDifficultyChoice;
+     private JButton btnGenerateShareCode;
+     private JButton btnLoadShareCode;
+     private JTextField textFieldShareCode;
      
      public int number_of_enemies = 0;
      public int xp = 0;
      public int adjusted = 0;
+     public String shrCde;
      public String Diff = "Medium";
-     private JComboBox comboBoxDifficulty;
-     private JLabel lblBiome;
+     
 
     /**
      * Launch the application.
@@ -69,6 +73,7 @@ public class EncounterGUI{
      */
     private void initialize() {
         frame = new JFrame();
+        frame.setResizable(false);
         frame.setBounds(100, 100, 808, 459);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -82,18 +87,20 @@ public class EncounterGUI{
         comboEnemyList.addItem("Bandit");
         comboEnemyList.addItem("Bandit Chief");
         comboEnemyList.addItem("Cultist");
+        comboEnemyList.addItem("Dire Wolf");
+        comboEnemyList.addItem("Ghost");
         comboEnemyList.addItem("Goblin");
-        comboEnemyList.addItem("Orc");
-        comboEnemyList.addItem("Werewolf");
         comboEnemyList.addItem("Knight");
+        comboEnemyList.addItem("Orc");
         comboEnemyList.addItem("Wererat");
+        comboEnemyList.addItem("Werewolf");
         comboEnemyList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             }
         });
         
         
-        JButton btnGenerate = new JButton("Generate New Encounter");
+        JButton btnGenerate = new JButton("Random Encounter");
         btnGenerate.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		Diff = comboBoxDifficulty.getSelectedItem().toString();
@@ -103,10 +110,6 @@ public class EncounterGUI{
         btnGenerate.setBounds(45, 95, 175, 25);
         frame.getContentPane().add(btnGenerate);
         
-        lblCurrentEncounter = new JLabel("Current Encounter(max size 6)");
-        lblCurrentEncounter.setBounds(348, 47, 189, 16);
-        frame.getContentPane().add(lblCurrentEncounter);
-        
         JButton btnGetXp = new JButton("Get XP");
         btnGetXp.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -115,6 +118,10 @@ public class EncounterGUI{
         		lblDiffValue.setText(getDifficulty(adjustedXP(xp)));
         	}
         });
+        
+        lblCurrentEncounter = new JLabel("Current Encounter(max size 6)");
+        lblCurrentEncounter.setBounds(348, 47, 189, 16);
+        frame.getContentPane().add(lblCurrentEncounter);
         btnGetXp.setBounds(614, 193, 81, 25);
         frame.getContentPane().add(btnGetXp);
         
@@ -267,9 +274,32 @@ public class EncounterGUI{
         comboBoxDifficulty.addItem("Hard");
         comboBoxDifficulty.addItem("Deadly");
         
-        lblBiome = new JLabel("Difficulty");
-        lblBiome.setBounds(45, 148, 56, 16);
-        frame.getContentPane().add(lblBiome);
+        lblDifficultyChoice = new JLabel("Difficulty");
+        lblDifficultyChoice.setBounds(45, 148, 56, 16);
+        frame.getContentPane().add(lblDifficultyChoice);
+        
+        btnGenerateShareCode = new JButton("Generate Share Code");
+        btnGenerateShareCode.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		generateShareCode();
+        	}
+        });
+        btnGenerateShareCode.setBounds(45, 354, 175, 25);
+        frame.getContentPane().add(btnGenerateShareCode);
+        
+        btnLoadShareCode = new JButton("Load Share Code");
+        btnLoadShareCode.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		loadShareCode(textFieldShareCode.getText());
+        	}
+        });
+        btnLoadShareCode.setBounds(232, 354, 175, 25);
+        frame.getContentPane().add(btnLoadShareCode);
+        
+        textFieldShareCode = new JTextField();
+        textFieldShareCode.setBounds(45, 319, 357, 22);
+        frame.getContentPane().add(textFieldShareCode);
+        textFieldShareCode.setColumns(10);
         comboEnemyList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             }
@@ -313,10 +343,13 @@ public class EncounterGUI{
     }
 
     public void generateEncouter(String Difficulty) {
+		textFieldShareCode.setText(null);
     	int xp_level = 0;
+    	int max_level = 0;
     	int encounter_xp = 0;
     	int index = 0;
     	int counter = 0;
+    	int check = 0;
     	Random r = new Random();
     	
     	textField_enemy1.setText(null);
@@ -326,46 +359,109 @@ public class EncounterGUI{
     	textField_enemy5.setText(null);
     	textField_enemy6.setText(null);
     	
-    	
-    	
     	if(Difficulty.equalsIgnoreCase("Easy")) {
     		xp_level = 1250;
+    		max_level = 2500;
     	}
     	else if(Difficulty.equalsIgnoreCase("Medium")) {
     		xp_level = 2500;
+    		max_level = 3750;
     	}
     	else if(Difficulty.equalsIgnoreCase("Hard")) {
     		xp_level = 3750;
+    		max_level = 5500;
     	}
     	else if(Difficulty.equalsIgnoreCase("Deadly")) {
     		xp_level = 5500;
+    		max_level = 7000;
     	}
     	else {
     		xp_level = 2500;
+
     	}
     	
-    	while((encounter_xp < xp_level) && (counter < 6)) {
-    		index = r.nextInt((7)+1)+1;
-    		
-    		String temp = comboEnemyList.getItemAt(index).toString();
-    		//System.out.println(temp);
-    		addEnemy(temp);
-    		getXP();
-    		encounter_xp = adjustedXP(xp);
-    		//System.out.printf("at 385 ecounter adjusted  = %d\n", encounter_xp);
-    		counter ++;
-    		    		
-    		
-    		//System.out.printf("at 363, mosnter xp xp = ", getMonsterObj(comboEnemyList.getItemAt(index).toString()).getXp());
-    		
+    	if(Difficulty.equalsIgnoreCase("Select")) 
+    	{
+    		while((encounter_xp < xp_level) && (counter < 6)) {
+	    		index = r.nextInt((7)+1)+1;
+	    		String temp = comboEnemyList.getItemAt(index).toString();
+	    		addEnemy(temp);
+	    		getXP();
+	    		encounter_xp = adjustedXP(xp);
+	    		counter ++;
+	    	}
+	    	lblTotalXpValue.setText(Integer.toString(getXP()));	
+			lblAdjustedXpValue.setText(Integer.toString(adjustedXP(xp)));
+			lblDiffValue.setText(getDifficulty(adjustedXP(xp)));
     	}
+    	else
+    	{
+    	
+	    	while(check == 0) 
+	    	{
+		    	while((encounter_xp < xp_level) && (counter < 6)) 
+		    	{
+		    		index = r.nextInt((7)+1)+1;
+		    		String temp = comboEnemyList.getItemAt(index).toString();
+		    		addEnemy(temp);
+		    		getXP();
+		    		encounter_xp = adjustedXP(xp);
+		    		counter ++;
+		    		//System.out.println("error in inner loop 410");
+		    	
+		    	}
+				lblDiffValue.setText(getDifficulty(adjustedXP(xp)));
+				
+				if(Difficulty.equalsIgnoreCase(lblDiffValue.getText())) {
+					check = 1;
+				}
+				else
+				{
 
+					for(int i = 0; i < 6; i++) {
+						removeEnemy(i);
+						
+					}
+					counter = 0;
+					check = 0;
+					encounter_xp = 0;
+				}
+				//System.out.println("error in outer loop 425");
+	    	}
+    	
+    	lblTotalXpValue.setText(Integer.toString(getXP()));	
+		lblAdjustedXpValue.setText(Integer.toString(adjustedXP(xp)));
+		lblDiffValue.setText(getDifficulty(adjustedXP(xp)));
+    	}
+    	
+    	
+
+    }
+    
+    public void removeEnemy(int index) {
+    	if(index == 1) {
+    		textField_enemy1.setText(null);
+    	}
+    	else if(index == 2) {
+    		textField_enemy2.setText(null);
+    	}
+    	else if(index == 3) {
+    		textField_enemy3.setText(null);
+    	}
+    	else if(index == 4) {
+    		textField_enemy4.setText(null);
+    	}
+    	else if(index == 5) {
+    		textField_enemy5.setText(null);
+    	}
+    	else if(index == 6) {
+    		textField_enemy6.setText(null);
+    	}
     }
     
     public int getXP() {
     	xp = 0;
     	String temp = null;
-    	//System.out.printf("at 362 xp = %d\n", xp);
     	
     	if( !(textField_enemy1.getText().equalsIgnoreCase(null)) && !(textField_enemy1.getText().equalsIgnoreCase("")) ) {
     		xp += getMonsterObj(textField_enemy1.getText()).getXp();
@@ -421,8 +517,7 @@ public class EncounterGUI{
     public String getDifficulty(int adjXp) {
     	String diff = "no difficulty";
     	
-    	//System.out.printf("at 416 adj = %d\n", adjXp);
-    	
+
     	if(adjXp < 1250) {
     		diff = "Trivial";
     	}
@@ -468,7 +563,156 @@ public class EncounterGUI{
     	else if(name.equalsIgnoreCase("Wererat")) {
     		return Monsters.Wererat;
     	}
+    	else if(name.equalsIgnoreCase("Dire Wolf")) {
+    		return Monsters.DireWolf;
+    	}
+    	else if(name.equalsIgnoreCase("Ghost")) {
+    		return Monsters.Ghost;
+    	}
+
     	else return null;
+    }
+    
+    public String generateShareCode(){
+    	StringBuilder code = new StringBuilder("");
+    	String nextEnemy = null;
+    	
+    	nextEnemy = textField_enemy1.getText();
+    	code.append(convertToCode(nextEnemy));
+    	nextEnemy = textField_enemy2.getText();
+    	code.append(convertToCode(nextEnemy));
+    	nextEnemy = textField_enemy3.getText();
+    	code.append(convertToCode(nextEnemy));
+    	nextEnemy = textField_enemy4.getText();
+    	code.append(convertToCode(nextEnemy));
+    	nextEnemy = textField_enemy5.getText();
+    	code.append(convertToCode(nextEnemy));
+    	nextEnemy = textField_enemy6.getText();
+    	code.append(convertToCode(nextEnemy));
+    	
+    	textFieldShareCode.setText(code.toString());
+    	
+    	//System.out.printf("at 505, string is %s\n", code.toString());
+    	
+    	return code.toString();
+    }
+    
+    public void loadShareCode(String code) {
+    	String test = code;
+    	
+    	if(code.length() != 18) {
+    		System.out.println("wrong length");
+    	}
+    	else {
+    	
+    	textField_enemy1.setText(null);
+    	textField_enemy2.setText(null);
+    	textField_enemy3.setText(null);
+    	textField_enemy4.setText(null);
+    	textField_enemy5.setText(null);
+    	textField_enemy6.setText(null);
+    	
+    	String enemy1 = test.substring(0,3);
+    	String enemy2 = test.substring(3,6);
+    	String enemy3 = test.substring(6,9);
+    	String enemy4 = test.substring(9,12);
+    	String enemy5 = test.substring(12,15);
+    	String enemy6 = test.substring(15,18);
+    	
+    	textField_enemy1.setText(convertFromCode(enemy1));
+    	textField_enemy2.setText(convertFromCode(enemy2));
+    	textField_enemy3.setText(convertFromCode(enemy3));
+    	textField_enemy4.setText(convertFromCode(enemy4));
+    	textField_enemy5.setText(convertFromCode(enemy5));
+    	textField_enemy6.setText(convertFromCode(enemy6));
+    	
+    	}
+    	
+    	lblTotalXpValue.setText(Integer.toString(getXP()));	
+		lblAdjustedXpValue.setText(Integer.toString(adjustedXP(xp)));
+		lblDiffValue.setText(getDifficulty(adjustedXP(xp)));
+    }
+  
+    public String convertToCode(String enemy) {
+    	//String code = null;
+    	if(enemy.equalsIgnoreCase("Bandit")) {
+    		return Monsters.Bandit.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Bandit Chief")) {
+    		return Monsters.BanditChief.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Cultist")) {
+    		return Monsters.Goblin.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Goblin")) {
+    		return Monsters.Orc.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Orc")) {
+    		return Monsters.Cultist.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Werewolf")) {
+    		return Monsters.Werewolf.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Knight")) {
+    		return Monsters.Knight.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Wererat")) {
+    		return Monsters.Wererat.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Dire Wolf")) {
+    		return Monsters.DireWolf.getCode();
+    	}
+    	else if(enemy.equalsIgnoreCase("Ghost")) {
+    		return Monsters.Ghost.getCode();
+    	}
+ 
+
+    	else return "nul";
+    }
+    
+    public String convertFromCode(String code) {
+    	String enemyName = code;
+    	
+    	if(enemyName.equalsIgnoreCase("nul")) {
+    		enemyName = null;
+    	}
+    	else if(enemyName.equalsIgnoreCase("bdt")) {
+    		enemyName =  Monsters.Bandit.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("bdc")) {
+    		enemyName =  Monsters.BanditChief.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("gob")) {
+    		enemyName =  Monsters.Goblin.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("orc")) {
+    		enemyName =  Monsters.Orc.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("cul")) {
+    		enemyName =  Monsters.Cultist.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("wrw")) {
+    		enemyName =  Monsters.Werewolf.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("kni")) {
+    		enemyName =  Monsters.Knight.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("wrr")) {
+    		enemyName =  Monsters.Wererat.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("drw")) {
+    		enemyName =  Monsters.DireWolf.getName();
+    	}
+    	else if(enemyName.equalsIgnoreCase("gho")) {
+    		enemyName =  Monsters.Ghost.getName();
+    	}
+    	else {
+    		enemyName = null;
+    	}
+ 
+    	
+    	
+    	return enemyName;
     }
 }
 
