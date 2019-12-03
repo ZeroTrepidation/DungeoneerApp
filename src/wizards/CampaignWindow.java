@@ -217,13 +217,13 @@ public class CampaignWindow extends JFrame {
 		lblAge.setBounds(158, 117, 85, 31);
 		panel_2.add(lblAge);
 
-		JLabel lblWeight = new JLabel("Weight");
+		JLabel lblWeight = new JLabel("Weight (kg)");
 		lblWeight.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWeight.setFont(new Font("Papyrus", Font.BOLD, 13));
 		lblWeight.setBounds(253, 117, 85, 31);
 		panel_2.add(lblWeight);
 
-		JLabel lblHeight = new JLabel("Height");
+		JLabel lblHeight = new JLabel("Height (cm)");
 		lblHeight.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHeight.setFont(new Font("Papyrus", Font.BOLD, 13));
 		lblHeight.setBounds(348, 117, 85, 31);
@@ -457,6 +457,7 @@ public class CampaignWindow extends JFrame {
 		btnLoadCampaign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!list.isSelectionEmpty()) {
+					dlm2.clear();
 					int index = list.getSelectedIndex();
 					currentCampaign = currentAccount.getCampaignList().get(index);
 					playerCharacter character = currentCampaign.getMainCharacter();
@@ -483,6 +484,7 @@ public class CampaignWindow extends JFrame {
 					fieldSkill3.setText(character.getSkill3());
 					fieldSkill4.setText(character.getSkill4());
 					
+					
 					for (Event element : currentCampaign.getEvents()) {
 						dlm2.addElement(element);
 					}
@@ -499,7 +501,6 @@ public class CampaignWindow extends JFrame {
 				if(campaignLoaded) {
 					CharacterCreatorUI ccui = new CharacterCreatorUI(currentCampaign.getMainCharacter());
 					ccui.setVisible(true);
-					System.out.println(currentCampaign.getMainCharacter().getShareCode());
 					ccui.generateCharacter(currentCampaign.getMainCharacter().getShareCode());
 				}
 			}

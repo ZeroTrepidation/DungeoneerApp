@@ -94,7 +94,7 @@ public class Event {
 	}
 	@Override
 	public String toString() {
-		return "Session Number: " + sessionNumber + " | Session Date: " + sessionDate;
+		return "Session No: " + sessionNumber+ " | " + label + " | " + sessionDate;
 	}
 	public static void displayEventWindow(Vector<Event> events, int index, DefaultListModel dlm) {
 		JFrame f = new JFrame();
@@ -147,7 +147,7 @@ public class Event {
 		//Description
 		JTextArea description = new JTextArea(events.get(index).getDescription());
 		description.setBorder(new LineBorder(new Color(0, 0, 0)));
-		description.setWrapStyleWord(true);
+		description.setLineWrap(true);
 		JLabel descriptionLabel = new JLabel("Description");
 		descriptionLabel.setBounds(labelX,300,300,height);
 		description.setBounds(160,300,300,153);
