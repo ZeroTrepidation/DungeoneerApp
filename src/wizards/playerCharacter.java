@@ -237,7 +237,7 @@ public class playerCharacter
     {
         try
         {
-            FileWriter fileWriter = new FileWriter("C:/Users/Bill/Desktop/"+name+".txt");
+        	FileWriter fileWriter = new FileWriter(System.getProperty("user.home")+"/Desktop/"+name+".txt");
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.println("NAME: " + name);
             printWriter.println("CLASS: " + characterClass);

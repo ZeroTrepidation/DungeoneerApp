@@ -75,7 +75,7 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
         
    
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -710,6 +710,8 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
             jTextField6.setText(shareCode.substring(31, 33));
             
             
+        }else {
+        	
         }
     }
 
