@@ -45,9 +45,9 @@ public class CampaignWindow extends JFrame {
 
 	private JPanel contentPane;
 	private Account currentAccount;
-	private boolean campaignLoaded = false;
-	private Campaign currentCampaign;
-	private DefaultListModel dlm2;
+	private static boolean campaignLoaded = false;
+	private static Campaign currentCampaign;
+	private static DefaultListModel dlm2;
 
 	/**
 	 * Create the frame.
@@ -117,6 +117,8 @@ public class CampaignWindow extends JFrame {
 					currentAccount.deleteCampaign(list.getSelectedIndex());
 					dlm.remove(list.getSelectedIndex());
 				}
+				campaignLoaded = false;
+				currentCampaign = null;
 			}
 		});
 
@@ -416,11 +418,8 @@ public class CampaignWindow extends JFrame {
 		btnCreateEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(campaignLoaded) {
-					Vector<Event> eventList = currentCampaign.getEvents();
 					Event temp = new Event();
-					eventList.add(temp);
-					Event.displayEventWindow(eventList, eventList.indexOf(temp), dlm2);
-					
+					addEventCampaign(temp);
 					
 				}
 			}
@@ -522,6 +521,7 @@ public class CampaignWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				EncounterGUI window = new EncounterGUI();
 				
+				
 			}
 		});
 		btnEncounterGenerator.setBounds(1061, 590, 169, 34);
@@ -611,9 +611,20 @@ public class CampaignWindow extends JFrame {
 				}
 			}
 		});
+		
+		
 
 	}
 
+	public static void addEventCampaign(Event temp) {
+		if(campaignLoaded) {
+			Vector<Event> eventList = currentCampaign.getEvents();
+			eventList.add(temp);
+			Event.displayEventWindow(eventList, eventList.indexOf(temp), dlm2);
+			
+		}
+	}
+	
 	public class JOptionPaneMultiInput {
 		public void initialize(Account currentAccount) {
 			JPasswordField oldPasswordField = new JPasswordField(20);
@@ -667,4 +678,6 @@ public class CampaignWindow extends JFrame {
 
 		}
 	}
+	
+
 }
