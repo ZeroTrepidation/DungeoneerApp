@@ -45,17 +45,15 @@ public class CampaignWindow extends JFrame {
 
 	private JPanel contentPane;
 	private Account currentAccount;
-	private boolean campaignLoaded = false;
-	private Campaign currentCampaign;
-	private DefaultListModel dlm2;
+	private static boolean campaignLoaded = false;
+	private static Campaign currentCampaign;
+	private static DefaultListModel dlm2;
 
 	/**
 	 * Create the frame.
 	 */
 	public CampaignWindow(Account currentAccount) {
 		this.currentAccount = currentAccount;
-		
-		
 
 		setTitle("Hello " + currentAccount.getUsername() + "!");
 		setResizable(false);
@@ -103,7 +101,7 @@ public class CampaignWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CampaignBuilder builder = new CampaignBuilder();
 				builder.initialize(currentAccount, dlm);
-				//list.updateUI();
+				// list.updateUI();
 			}
 		});
 
@@ -117,6 +115,8 @@ public class CampaignWindow extends JFrame {
 					currentAccount.deleteCampaign(list.getSelectedIndex());
 					dlm.remove(list.getSelectedIndex());
 				}
+				campaignLoaded = false;
+				currentCampaign = null;
 			}
 		});
 
@@ -124,7 +124,6 @@ public class CampaignWindow extends JFrame {
 		panel.add(btnDeleteCampaign);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		panel_2.setBounds(306, 40, 504, 494);
 		panel.add(panel_2);
@@ -171,35 +170,35 @@ public class CampaignWindow extends JFrame {
 		panel_2.add(lblHair);
 
 		JLabel fieldClass = new JLabel("");
-		fieldClass.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldClass.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldClass.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldClass.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldClass.setBounds(10, 75, 85, 31);
 		panel_2.add(fieldClass);
 
 		JLabel fieldRace = new JLabel("");
-		fieldRace.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldRace.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldRace.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldRace.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldRace.setBounds(108, 75, 85, 31);
 		panel_2.add(fieldRace);
 
 		JLabel fieldAlignment = new JLabel("");
-		fieldAlignment.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldAlignment.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldAlignment.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldAlignment.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldAlignment.setBounds(207, 75, 85, 31);
 		panel_2.add(fieldAlignment);
 
 		JLabel fieldEyes = new JLabel("");
-		fieldEyes.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldEyes.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldEyes.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldEyes.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldEyes.setBounds(302, 75, 85, 31);
 		panel_2.add(fieldEyes);
 
 		JLabel fieldHair = new JLabel("");
-		fieldHair.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldHair.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldHair.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldHair.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldHair.setBounds(397, 75, 85, 31);
@@ -230,28 +229,28 @@ public class CampaignWindow extends JFrame {
 		panel_2.add(lblHeight);
 
 		JLabel fieldSkin = new JLabel("");
-		fieldSkin.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldSkin.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldSkin.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldSkin.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldSkin.setBounds(63, 148, 85, 31);
 		panel_2.add(fieldSkin);
 
 		JLabel fieldAge = new JLabel("");
-		fieldAge.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldAge.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldAge.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldAge.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldAge.setBounds(158, 148, 85, 31);
 		panel_2.add(fieldAge);
 
 		JLabel fieldWeight = new JLabel("");
-		fieldWeight.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldWeight.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldWeight.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldWeight.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldWeight.setBounds(253, 148, 85, 31);
 		panel_2.add(fieldWeight);
 
 		JLabel fieldHeight = new JLabel("");
-		fieldHeight.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldHeight.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldHeight.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldHeight.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldHeight.setBounds(348, 148, 85, 31);
@@ -294,42 +293,42 @@ public class CampaignWindow extends JFrame {
 		panel_2.add(lblChr);
 
 		JLabel fieldStr = new JLabel("");
-		fieldStr.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldStr.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldStr.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldStr.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldStr.setBounds(71, 201, 69, 31);
 		panel_2.add(fieldStr);
 
 		JLabel fieldDex = new JLabel("");
-		fieldDex.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldDex.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldDex.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldDex.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldDex.setBounds(71, 243, 69, 31);
 		panel_2.add(fieldDex);
 
 		JLabel fieldCon = new JLabel("");
-		fieldCon.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldCon.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldCon.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldCon.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldCon.setBounds(71, 285, 69, 31);
 		panel_2.add(fieldCon);
 
 		JLabel fieldInt = new JLabel("");
-		fieldInt.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldInt.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldInt.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldInt.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldInt.setBounds(71, 327, 69, 31);
 		panel_2.add(fieldInt);
 
 		JLabel fieldWis = new JLabel("");
-		fieldWis.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldWis.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldWis.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldWis.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldWis.setBounds(71, 369, 69, 31);
 		panel_2.add(fieldWis);
 
 		JLabel fieldChr = new JLabel("");
-		fieldChr.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldChr.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldChr.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldChr.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldChr.setBounds(71, 411, 69, 31);
@@ -348,14 +347,14 @@ public class CampaignWindow extends JFrame {
 		panel_2.add(lblSavingThrow_1);
 
 		JLabel fieldST1 = new JLabel("");
-		fieldST1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldST1.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldST1.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldST1.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldST1.setBounds(150, 243, 119, 31);
 		panel_2.add(fieldST1);
 
 		JLabel fieldST2 = new JLabel("");
-		fieldST2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldST2.setBorder(new LineBorder(Color.WHITE, 1, true));
 		fieldST2.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldST2.setFont(new Font("Papyrus", Font.BOLD, 12));
 		fieldST2.setBounds(279, 243, 119, 31);
@@ -374,25 +373,25 @@ public class CampaignWindow extends JFrame {
 		panel_3.setLayout(new GridLayout(2, 2, 5, 5));
 
 		JLabel fieldSkill1 = new JLabel("");
-		fieldSkill1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldSkill1.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_3.add(fieldSkill1);
 		fieldSkill1.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldSkill1.setFont(new Font("Papyrus", Font.BOLD, 12));
 
 		JLabel fieldSkill2 = new JLabel("");
-		fieldSkill2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldSkill2.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_3.add(fieldSkill2);
 		fieldSkill2.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldSkill2.setFont(new Font("Papyrus", Font.BOLD, 12));
 
 		JLabel fieldSkill3 = new JLabel("");
-		fieldSkill3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldSkill3.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_3.add(fieldSkill3);
 		fieldSkill3.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldSkill3.setFont(new Font("Papyrus", Font.BOLD, 12));
 
 		JLabel fieldSkill4 = new JLabel("");
-		fieldSkill4.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		fieldSkill4.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_3.add(fieldSkill4);
 		fieldSkill4.setHorizontalAlignment(SwingConstants.CENTER);
 		fieldSkill4.setFont(new Font("Papyrus", Font.BOLD, 12));
@@ -405,7 +404,7 @@ public class CampaignWindow extends JFrame {
 
 		dlm2 = new DefaultListModel();
 		JList eventList = new JList(dlm2);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane(eventList);
 		scrollPane_1.setBounds(10, 11, 409, 413);
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -415,13 +414,10 @@ public class CampaignWindow extends JFrame {
 		JButton btnCreateEvent = new JButton("Create Event");
 		btnCreateEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(campaignLoaded) {
-					Vector<Event> eventList = currentCampaign.getEvents();
+				if (campaignLoaded) {
 					Event temp = new Event();
-					eventList.add(temp);
-					Event.displayEventWindow(eventList, eventList.indexOf(temp), dlm2);
-					
-					
+					addEventCampaign(temp);
+
 				}
 			}
 		});
@@ -431,7 +427,7 @@ public class CampaignWindow extends JFrame {
 		JButton btnEditEvent = new JButton("Edit Event");
 		btnEditEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!eventList.isSelectionEmpty()) {
+				if (!eventList.isSelectionEmpty()) {
 					int index = eventList.getSelectedIndex();
 					Event.displayEventWindow(currentCampaign.getEvents(), index, dlm2);
 				}
@@ -443,7 +439,7 @@ public class CampaignWindow extends JFrame {
 		JButton btnDeleteEvent = new JButton("Delete Event");
 		btnDeleteEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!eventList.isSelectionEmpty()) {
+				if (!eventList.isSelectionEmpty()) {
 					int index = eventList.getSelectedIndex();
 					currentCampaign.getEvents().remove(index);
 					dlm2.remove(index);
@@ -483,8 +479,7 @@ public class CampaignWindow extends JFrame {
 					fieldSkill2.setText(character.getSkill2());
 					fieldSkill3.setText(character.getSkill3());
 					fieldSkill4.setText(character.getSkill4());
-					
-					
+
 					for (Event element : currentCampaign.getEvents()) {
 						dlm2.addElement(element);
 					}
@@ -494,11 +489,11 @@ public class CampaignWindow extends JFrame {
 		});
 		btnLoadCampaign.setBounds(10, 579, 142, 23);
 		panel.add(btnLoadCampaign);
-		
+
 		JButton btnEditCharacter = new JButton("Edit Character");
 		btnEditCharacter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(campaignLoaded) {
+				if (campaignLoaded) {
 					CharacterCreatorUI ccui = new CharacterCreatorUI(currentCampaign.getMainCharacter());
 					ccui.setVisible(true);
 					ccui.generateCharacter(currentCampaign.getMainCharacter().getShareCode());
@@ -507,7 +502,7 @@ public class CampaignWindow extends JFrame {
 		});
 		btnEditCharacter.setBounds(316, 545, 142, 23);
 		panel.add(btnEditCharacter);
-		
+
 		JButton btnRoomgenerator = new JButton("Room Generator");
 		btnRoomgenerator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -516,90 +511,90 @@ public class CampaignWindow extends JFrame {
 		});
 		btnRoomgenerator.setBounds(1061, 545, 169, 34);
 		panel.add(btnRoomgenerator);
-		
+
 		JButton btnEncounterGenerator = new JButton("Encounter Generator");
 		btnEncounterGenerator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EncounterGUI window = new EncounterGUI();
-				
+
 			}
 		});
 		btnEncounterGenerator.setBounds(1061, 590, 169, 34);
 		panel.add(btnEncounterGenerator);
-		
-				JPanel panel_1 = new JPanel();
-				tabbedPane.addTab("Account", null, panel_1, null);
-				panel_1.setLayout(null);
-				
-						JLabel usernameLabel = new JLabel("Current Username:");
-						usernameLabel.setBounds(44, 41, 127, 37);
-						panel_1.add(usernameLabel);
-						
-								JLabel nameLabel = new JLabel(currentAccount.getUsername());
-								nameLabel.setBounds(181, 41, 169, 37);
-								panel_1.add(nameLabel);
-								
-										JButton changeUsernameButton = new JButton("Change Username");
-										changeUsernameButton.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												String newUsername = JOptionPane.showInputDialog("Enter a new username");
-												if (newUsername != null) {
-													boolean accountExists = false;
 
-													for (int i = 0; i < Controller.accountList.size(); i++) {
-														if (Controller.accountList.get(i).getUsername().toLowerCase()
-																.equals(newUsername.toLowerCase())) {
-															accountExists = true;
-														}
-													}
-													if (accountExists) {
-														JOptionPane.showMessageDialog(contentPane, "Account Already Exists");
-													} else {
-														currentAccount.changeUsername(newUsername);
-														nameLabel.setText(currentAccount.getUsername());
-														setTitle(currentAccount.getUsername());
-													}
-												}
-											}
-										});
-										changeUsernameButton.setBounds(44, 129, 156, 23);
-										panel_1.add(changeUsernameButton);
-										
-												JButton changePasswordButton = new JButton("Change Password");
-												changePasswordButton.addActionListener(new ActionListener() {
-													public void actionPerformed(ActionEvent e) {
-														JOptionPaneMultiInput pane = new JOptionPaneMultiInput();
-														pane.initialize(currentAccount);
-													}
-												});
-												changePasswordButton.setBounds(44, 180, 156, 23);
-												panel_1.add(changePasswordButton);
-												
-														JButton deleteAccountButton = new JButton("Delete Account");
-														deleteAccountButton.addActionListener(new ActionListener() {
-															public void actionPerformed(ActionEvent e) {
-																if (JOptionPane.showConfirmDialog(contentPane, "Are you sure you want to delete your account?",
-																		"Delete Account?", JOptionPane.YES_NO_OPTION,
-																		JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-																	dispose();
-																	Controller.deleteAccount(currentAccount.getUsername());
-																	Controller.login.visibility(true);
-																}
-															}
-														});
-														deleteAccountButton.setBounds(44, 233, 156, 23);
-														panel_1.add(deleteAccountButton);
-														
-																JButton btnLogOut = new JButton("Log out");
-																btnLogOut.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Account", null, panel_1, null);
+		panel_1.setLayout(null);
 
-																		dispose();
-																		Controller.login.visibility(true);
-																	}
-																});
-																btnLogOut.setBounds(44, 285, 156, 23);
-																panel_1.add(btnLogOut);
+		JLabel usernameLabel = new JLabel("Current Username:");
+		usernameLabel.setBounds(44, 41, 127, 37);
+		panel_1.add(usernameLabel);
+
+		JLabel nameLabel = new JLabel(currentAccount.getUsername());
+		nameLabel.setBounds(181, 41, 169, 37);
+		panel_1.add(nameLabel);
+
+		JButton changeUsernameButton = new JButton("Change Username");
+		changeUsernameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String newUsername = JOptionPane.showInputDialog("Enter a new username");
+				if (newUsername != null) {
+					boolean accountExists = false;
+
+					for (int i = 0; i < Controller.accountList.size(); i++) {
+						if (Controller.accountList.get(i).getUsername().toLowerCase()
+								.equals(newUsername.toLowerCase())) {
+							accountExists = true;
+						}
+					}
+					if (accountExists) {
+						JOptionPane.showMessageDialog(contentPane, "Account Already Exists");
+					} else {
+						currentAccount.changeUsername(newUsername);
+						nameLabel.setText(currentAccount.getUsername());
+						setTitle(currentAccount.getUsername());
+					}
+				}
+			}
+		});
+		changeUsernameButton.setBounds(44, 129, 156, 23);
+		panel_1.add(changeUsernameButton);
+
+		JButton changePasswordButton = new JButton("Change Password");
+		changePasswordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPaneMultiInput pane = new JOptionPaneMultiInput();
+				pane.initialize(currentAccount);
+			}
+		});
+		changePasswordButton.setBounds(44, 180, 156, 23);
+		panel_1.add(changePasswordButton);
+
+		JButton deleteAccountButton = new JButton("Delete Account");
+		deleteAccountButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(contentPane, "Are you sure you want to delete your account?",
+						"Delete Account?", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					dispose();
+					Controller.deleteAccount(currentAccount.getUsername());
+					Controller.login.visibility(true);
+				}
+			}
+		});
+		deleteAccountButton.setBounds(44, 233, 156, 23);
+		panel_1.add(deleteAccountButton);
+
+		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				dispose();
+				Controller.login.visibility(true);
+			}
+		});
+		btnLogOut.setBounds(44, 285, 156, 23);
+		panel_1.add(btnLogOut);
 
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
@@ -612,6 +607,15 @@ public class CampaignWindow extends JFrame {
 			}
 		});
 
+	}
+
+	public static void addEventCampaign(Event temp) {
+		if (campaignLoaded) {
+			Vector<Event> eventList = currentCampaign.getEvents();
+			eventList.add(temp);
+			Event.displayEventWindow(eventList, eventList.indexOf(temp), dlm2);
+
+		}
 	}
 
 	public class JOptionPaneMultiInput {
@@ -667,4 +671,5 @@ public class CampaignWindow extends JFrame {
 
 		}
 	}
+
 }

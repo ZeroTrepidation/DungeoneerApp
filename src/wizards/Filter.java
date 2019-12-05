@@ -2,6 +2,7 @@ package wizards;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JCheckBox;
@@ -10,15 +11,16 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
 
 public class Filter {
 	private static String answer = "";
 
 	private JFrame filterFrame;
-	private static JCheckBox arctic = new JCheckBox("Arctic");
-	private static JCheckBox temperate = new JCheckBox("Temperate");
-	private static JCheckBox tropical = new JCheckBox("Tropical");
-	private static JCheckBox dry = new JCheckBox("Dry");
+	private static JRadioButton arctic = new JRadioButton("Arctic");
+	private static JRadioButton temperate = new JRadioButton("Temperate");
+	private static JRadioButton tropical = new JRadioButton("Tropical");
+	private static JRadioButton dry = new JRadioButton("Dry");
 
 	/**
 	 * Launch the application.
@@ -31,7 +33,6 @@ public class Filter {
 				try {
 					Filter window = new Filter();
 					window.filterFrame.setVisible(true);
-
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,6 +80,12 @@ public class Filter {
 		tropical.setHorizontalAlignment(SwingConstants.CENTER);
 		dry.setHorizontalAlignment(SwingConstants.CENTER);
 
+		ButtonGroup group1 = new ButtonGroup();
+		group1.add(arctic);
+		group1.add(dry);
+		group1.add(temperate);
+		group1.add(tropical);
+
 		JButton save = new JButton("Save");
 
 		save.addMouseListener(new MouseAdapter() {
@@ -105,41 +112,25 @@ public class Filter {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(filterFrame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(185)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tropical)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(dry)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(temperate)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(arctic)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(save, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(155))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(arctic)
-					.addGap(18)
-					.addComponent(temperate)
-					.addGap(18)
-					.addComponent(tropical)
-					.addGap(18)
-					.addComponent(dry)
-					.addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-					.addComponent(save, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(185)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(tropical)
+								.addGroup(groupLayout.createSequentialGroup().addComponent(dry)
+										.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(groupLayout.createSequentialGroup().addComponent(temperate)
+										.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(groupLayout.createSequentialGroup().addComponent(arctic)
+										.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(save, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+						.addGap(155)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(arctic).addGap(18)
+						.addComponent(temperate).addGap(18).addComponent(tropical).addGap(18).addComponent(dry)
+						.addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+						.addComponent(save, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
 		filterFrame.getContentPane().setLayout(groupLayout);
 		resetFilters();
 	}

@@ -34,20 +34,17 @@ public class LoginGUI {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					LoginGUI window = new LoginGUI();
 					window.frame.setVisible(true);
-					
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,10 +67,11 @@ public class LoginGUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 426, 258);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-	    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
 		frame.setLocation(x, y);
 
 		JPanel panel_1 = new JPanel();
@@ -110,8 +108,7 @@ public class LoginGUI {
 				String username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword());
 				boolean accountFound = false;
-				OUTER_LOOP: 
-				for (int i = 0; i < Controller.accountList.size(); i++) {
+				OUTER_LOOP: for (int i = 0; i < Controller.accountList.size(); i++) {
 					if (username.toLowerCase().equals(Controller.accountList.get(i).getUsername().toLowerCase())) {
 						if (password.equals(Controller.accountList.get(i).getPassword())) {
 							visibility(false);
@@ -122,9 +119,8 @@ public class LoginGUI {
 						}
 					}
 				}
-				if(accountFound == false) {
-					JOptionPane.showMessageDialog(frame,
-						    "Account does not exist or Password is wrong.");
+				if (accountFound == false) {
+					JOptionPane.showMessageDialog(frame, "Account does not exist or Password is wrong.");
 				}
 			}
 		});
@@ -156,11 +152,9 @@ public class LoginGUI {
 		JLabel lblAccountLogin = new JLabel("Account Login");
 		panel_2.add(lblAccountLogin);
 	}
-	
+
 	public void visibility(boolean bool) {
 		frame.setVisible(bool);
 	}
-	
-	
 
 }
