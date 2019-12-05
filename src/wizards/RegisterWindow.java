@@ -1,4 +1,5 @@
 package wizards;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -52,18 +53,16 @@ public class RegisterWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		//centers the location of the campaign window
+
+		// centers the location of the campaign window
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-	    int x = (int) ((dimension.getWidth() - getWidth()) / 2);
-	    int y = (int) ((dimension.getHeight() - getHeight()) / 2);
+		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - getHeight()) / 2);
 		setLocation(x, y);
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		
 
 		JLabel lblNewLabel = new JLabel("New Username: ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -104,7 +103,8 @@ public class RegisterWindow extends JFrame {
 				String passConfirm = String.valueOf(passwordField_1.getPassword());
 
 				if (pass.length() < 8) {
-					JOptionPane.showMessageDialog(contentPane, "Password is too short. (Must be at least 8 characters)");
+					JOptionPane.showMessageDialog(contentPane,
+							"Password is too short. (Must be at least 8 characters)");
 				}
 
 				else if (!pass.equals(passConfirm)) {

@@ -13,7 +13,7 @@ public class Campaign {
 	private playerCharacter mainCharacter;
 
 	private Vector<Event> events;
-	
+
 	public Campaign(String campName, String startDate) {
 		this.campName = campName;
 		this.startDate = startDate;
@@ -56,19 +56,5 @@ public class Campaign {
 	public String toString() {
 		return campName + " - " + startDate;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

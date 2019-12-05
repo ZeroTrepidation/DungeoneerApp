@@ -72,8 +72,9 @@ public class EncounterGUI{
         frame = new JFrame();
         frame.setResizable(false);
         frame.setBounds(100, 100, 808, 459);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setLayout(null);
+        frame.setLocationRelativeTo(null);
         
 
         

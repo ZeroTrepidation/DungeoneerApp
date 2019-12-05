@@ -78,7 +78,7 @@ public class Account {
 			newCampaign.setMainCharacter(mainCharacter);
 			new CharacterCreatorUI(mainCharacter).setVisible(true);
 			campaignList.add(newCampaign);
-			
+
 		} else {
 			JOptionPane.showMessageDialog(new Frame(), "Please choose a Unique Name for your Campaign");
 		}
