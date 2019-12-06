@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class playerCharacter {
+public class PlayerCharacter {
 	private String name, characterClass, race, alignment, eyes, hair, skin;
 	private int age, weight, height, str, dex, con, intel, wis, cha;
 	private String save1, save2, skill1, skill2, skill3, skill4, shareCode;
@@ -198,7 +198,7 @@ public class playerCharacter {
 		return shareCode;
 	}
 
-	public playerCharacter() {
+	public PlayerCharacter() {
 		this.classes = new String[] { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Ranger", "Rogue",
 				"Sorcerer", "Wizard" };
 		this.races = new String[] { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human",
@@ -352,7 +352,7 @@ public class playerCharacter {
 			printWriter.println("SKILL 4: " + skill4);
 			printWriter.close();
 		} catch (IOException ex) {
-			Logger.getLogger(playerCharacter.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(PlayerCharacter.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}

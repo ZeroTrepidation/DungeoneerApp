@@ -74,7 +74,7 @@ public class Account {
 		}
 		if (isUnique) {
 			dlm.addElement(newCampaign);
-			playerCharacter mainCharacter = new playerCharacter();
+			PlayerCharacter mainCharacter = new PlayerCharacter();
 			newCampaign.setMainCharacter(mainCharacter);
 			new CharacterCreatorUI(mainCharacter).setVisible(true);
 			campaignList.add(newCampaign);

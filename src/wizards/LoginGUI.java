@@ -107,22 +107,10 @@ public class LoginGUI {
 			public void mouseReleased(MouseEvent e) {
 				String username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword());
-				boolean accountFound = false;
-				OUTER_LOOP: for (int i = 0; i < Controller.accountList.size(); i++) {
-					if (username.toLowerCase().equals(Controller.accountList.get(i).getUsername().toLowerCase())) {
-						if (password.equals(Controller.accountList.get(i).getPassword())) {
-							visibility(false);
-							accountFound = true;
-							CampaignWindow campaignWindow = new CampaignWindow(Controller.accountList.get(i));
-							campaignWindow.setVisible(true);
-							break OUTER_LOOP;
-						}
-					}
-				}
-				if (accountFound == false) {
-					JOptionPane.showMessageDialog(frame, "Account does not exist or Password is wrong.");
-				}
+				login(username, password);
 			}
+
+			
 		});
 
 		panel.add(loginB);
@@ -153,6 +141,24 @@ public class LoginGUI {
 		panel_2.add(lblAccountLogin);
 	}
 
+	private void login(String username, String password) {
+		boolean accountFound = false;
+		OUTER_LOOP: for (int i = 0; i < Controller.accountList.size(); i++) {
+			if (username.toLowerCase().equals(Controller.accountList.get(i).getUsername().toLowerCase())) {
+				if (password.equals(Controller.accountList.get(i).getPassword())) {
+					visibility(false);
+					accountFound = true;
+					CampaignWindow campaignWindow = new CampaignWindow(Controller.accountList.get(i));
+					campaignWindow.setVisible(true);
+					break OUTER_LOOP;
+				}
+			}
+		}
+		if (accountFound == false) {
+			JOptionPane.showMessageDialog(frame, "Account does not exist or Password is wrong.");
+		}
+	}
+	
 	public void visibility(boolean bool) {
 		frame.setVisible(bool);
 	}

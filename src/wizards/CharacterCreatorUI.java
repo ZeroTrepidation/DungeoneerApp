@@ -8,9 +8,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CharacterCreatorUI extends javax.swing.JFrame {
 
-	playerCharacter myCharacter;
+	PlayerCharacter myCharacter;
 
-	public CharacterCreatorUI(playerCharacter character) {
+	public CharacterCreatorUI(PlayerCharacter character) {
 		this.myCharacter = character;
 		initComponents();
 	}
@@ -691,7 +691,7 @@ public class CharacterCreatorUI extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new CharacterCreatorUI(new playerCharacter()).setVisible(true);
+				new CharacterCreatorUI(new PlayerCharacter()).setVisible(true);
 			}
 		});
 	}

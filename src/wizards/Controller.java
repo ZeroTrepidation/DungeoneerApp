@@ -85,6 +85,8 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	private static void setNoireTheme() {
 		Properties props = new Properties();

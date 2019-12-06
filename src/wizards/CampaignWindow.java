@@ -57,11 +57,12 @@ public class CampaignWindow extends JFrame {
 
 		setTitle("Hello " + currentAccount.getUsername() + "!");
 		setResizable(false);
-		setBounds(100, 100, 1280, 720);
+		setBounds(100, 100,  1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
@@ -456,7 +457,7 @@ public class CampaignWindow extends JFrame {
 					dlm2.clear();
 					int index = list.getSelectedIndex();
 					currentCampaign = currentAccount.getCampaignList().get(index);
-					playerCharacter character = currentCampaign.getMainCharacter();
+					PlayerCharacter character = currentCampaign.getMainCharacter();
 					fieldCharName.setText(character.getName());
 					fieldClass.setText(String.valueOf(character.getCharacterClass()));
 					fieldRace.setText(character.getRace());
@@ -602,6 +603,7 @@ public class CampaignWindow extends JFrame {
 				if (JOptionPane.showConfirmDialog(contentPane, "Are you sure you want to exit this application?",
 						"Close Window?", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					dispose();
 					System.exit(0);
 				}
 			}
@@ -617,6 +619,7 @@ public class CampaignWindow extends JFrame {
 
 		}
 	}
+
 
 	public class JOptionPaneMultiInput {
 		public void initialize(Account currentAccount) {

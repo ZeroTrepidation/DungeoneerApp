@@ -10,7 +10,7 @@ public class Campaign {
 
 	private String campName;
 	private String startDate;
-	private playerCharacter mainCharacter;
+	private PlayerCharacter mainCharacter;
 
 	private Vector<Event> events;
 
@@ -36,11 +36,11 @@ public class Campaign {
 		this.startDate = startDate;
 	}
 
-	public playerCharacter getMainCharacter() {
+	public PlayerCharacter getMainCharacter() {
 		return mainCharacter;
 	}
 
-	public void setMainCharacter(playerCharacter mainCharacter) {
+	public void setMainCharacter(PlayerCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
 	}
 

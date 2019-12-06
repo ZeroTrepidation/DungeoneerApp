@@ -306,13 +306,13 @@ public class EncounterGUI{
         		temp.setLabel("Generated Encounter");
         		temp.setDescription("Encounter Summary: \n"
         				+ "Monsters Encountered: \n"
-        				+ ((textField_enemy1.getText()=="") ? "" : "\t" + textField_enemy1.getText() + "\n")
-        				+ ((textField_enemy2.getText()=="") ? "" : "\t" + textField_enemy2.getText() + "\n")
-        				+ ((textField_enemy3.getText()=="") ? "" : "\t" + textField_enemy3.getText() + "\n")
-        				+ ((textField_enemy4.getText()=="") ? "" : "\t" + textField_enemy4.getText() + "\n")
-        				+ ((textField_enemy5.getText()=="") ? "" : "\t" + textField_enemy5.getText() + "\n")
-        				+ ((textField_enemy6.getText()=="") ? "" : "\t" + textField_enemy6.getText() + "\n")
-        				+ "\nPotential EXP: " + getXP());
+        				+ ((textField_enemy1.getText().equals("")) ? "" : ("\t" + textField_enemy1.getText() + "\n"))
+        				+ ((textField_enemy2.getText().equals("")) ? "" : ("\t" + textField_enemy2.getText() + "\n"))
+        				+ ((textField_enemy3.getText().equals("")) ? "" : ("\t" + textField_enemy3.getText() + "\n"))
+        				+ ((textField_enemy4.getText().equals("")) ? "" : ("\t" + textField_enemy4.getText() + "\n"))
+        				+ ((textField_enemy5.getText().equals("")) ? "" : ("\t" + textField_enemy5.getText() + "\n"))
+        				+ ((textField_enemy6.getText().equals("")) ? "" : ("\t" + textField_enemy6.getText() + "\n"))
+        				+ "\nPotential EXP: " + adjustedXP(getXP()));
         		CampaignWindow.addEventCampaign(temp);
         	}
         	

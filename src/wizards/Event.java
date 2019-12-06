@@ -213,6 +213,9 @@ public class Event {
 
 			}
 		});
+		if (!dlm.contains(events.get(index))) {
+			dlm.addElement(events.get(index));
+		}
 		f.getContentPane().add(save);
 		f.getContentPane().add(sessionSpin);
 		f.getContentPane().add(sessionNum);

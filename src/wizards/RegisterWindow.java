@@ -102,37 +102,7 @@ public class RegisterWindow extends JFrame {
 				String pass = String.valueOf(passwordField.getPassword());
 				String passConfirm = String.valueOf(passwordField_1.getPassword());
 
-				if (pass.length() < 8) {
-					JOptionPane.showMessageDialog(contentPane,
-							"Password is too short. (Must be at least 8 characters)");
-				}
-
-				else if (!pass.equals(passConfirm)) {
-					JOptionPane.showMessageDialog(contentPane, "Passwords do not match.");
-					passwordField.setText("");
-					passwordField_1.setText("");
-				} else {
-
-					boolean isUnique = true;
-					if (Controller.accountList.size() == 0) {
-						Controller.accountList.add(new Account(username, passConfirm));
-						JOptionPane.showMessageDialog(contentPane, "Account successfully created!");
-						dispose();
-					} else {
-						for (int i = 0; i < Controller.accountList.size(); i++) {
-							if (Controller.accountList.get(i).getUsername().toLowerCase()
-									.equals(username.toLowerCase())) {
-								isUnique = false;
-								JOptionPane.showMessageDialog(contentPane, "Account Already Exists");
-							}
-							if (isUnique == true) {
-								Controller.accountList.add(new Account(username, passConfirm));
-								JOptionPane.showMessageDialog(contentPane, "Account successfully created!");
-								dispose();
-							}
-						}
-					}
-				}
+				addAccount(username,pass,passConfirm);
 
 			}
 		});
@@ -147,5 +117,41 @@ public class RegisterWindow extends JFrame {
 			}
 		});
 		panel_1.add(cancel);
+	}
+	
+	protected void addAccount(String username, String pass, String passConfirm) {
+		if (pass.length() < 8) {
+			JOptionPane.showMessageDialog(contentPane,
+					"Password is too short. (Must be at least 8 characters)");
+		}
+
+		else if (!pass.equals(passConfirm)) {
+			JOptionPane.showMessageDialog(contentPane, "Passwords do not match.");
+			passwordField.setText("");
+			passwordField_1.setText("");
+		} else {
+
+			boolean isUnique = true;
+			if (Controller.accountList.size() == 0) {
+				Controller.accountList.add(new Account(username, passConfirm));
+				JOptionPane.showMessageDialog(contentPane, "Account successfully created!");
+				dispose();
+			} else {
+				for (int i = 0; i < Controller.accountList.size(); i++) {
+					if (Controller.accountList.get(i).getUsername().toLowerCase()
+							.equals(username.toLowerCase())) {
+						isUnique = false;
+				}		
+					}
+					if (isUnique == true) {
+						Controller.accountList.add(new Account(username, passConfirm));
+						JOptionPane.showMessageDialog(contentPane, "Account successfully created!");
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(contentPane, "Account Already Exists");
+					}
+				
+			}
+		}
 	}
 }
